@@ -1,5 +1,6 @@
 package br.unb.pettinder.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,8 +18,12 @@ public class Pet  implements Comparable<Pet>{
     private Integer age;
     private String gender;
     private String race;
+    @Column(name = "image_name")
     private String imageName;
+    @Column(name = "parent_id")
     private Long parentId;
+    @Column(name = "parent_weight")
+    private Integer parentWeight;
 
     public Long getId() {
         return id;
@@ -81,11 +86,19 @@ public class Pet  implements Comparable<Pet>{
         return (int) this.id.compareTo(pet.getId()) ;
     }
 
-    @Override
-    public String toString() {
-        return "Pet [gender=" + gender + ", id=" + id + ", name=" + name + ", parentId=" + parentId + "]";
+    public Integer getParentWeight() {
+        return parentWeight;
     }
 
+    public void setParentWeight(Integer parentWeight) {
+        this.parentWeight = parentWeight;
+    }
+
+    @Override
+    public String toString() {
+        return "Pet [age=" + age + ", gender=" + gender + ", id=" + id + ", imageName=" + imageName + ", name=" + name
+                + ", parentId=" + parentId + ", parentWeight=" + parentWeight + ", race=" + race + "]";
+    }
     
     
 }
