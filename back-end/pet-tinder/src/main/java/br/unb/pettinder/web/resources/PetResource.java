@@ -14,7 +14,7 @@ import br.unb.pettinder.services.PetService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-  @CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/pets")
 public class PetResource {
