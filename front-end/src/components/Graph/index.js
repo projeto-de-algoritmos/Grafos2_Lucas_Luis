@@ -74,6 +74,18 @@ export default function Graph({ data }) {
       .style("font-weight", "bold")
       .style("font-size", 12);
 
+    const weight = svg.append("g")
+      .selectAll(".mytext")
+      .data(links)
+      .enter()
+      .append("text")
+        .text(d => d.source)
+        .style("text-anchor", "middle")
+        .style("fill", d => d.gender === "M"  ? "black" : "black")
+        .style("font-family", "Arial")
+        .style("font-weight", "bold")
+        .style("font-size", 12);
+
     simulation
       .nodes(nodes)
       .on("tick", ticked);
@@ -85,22 +97,29 @@ export default function Graph({ data }) {
       node.attr("transform", event.transform);
       link.attr("transform", event.transform);
       label.attr("transform", event.transform);
+      weight.attr("transform", event.transform);
     }
     
     function ticked() {
       node
-      .attr("cx", d => d.x)
-      .attr("cy", d => d.y)
-    
-    link
-      .attr("x1", d => d.source.x)
-      .attr("y1", d => d.source.y)
-      .attr("x2", d => d.target.x)
-      .attr("y2", d => d.target.y)
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y)
+      
+      link
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y)
 
-    label
-      .attr("x", d => d.x)
-      .attr("y", d => d.y + 4);
+      label
+        .attr("x", d => d.x)
+        .attr("y", d => d.y + 4);
+
+      weight
+        .attr("x", d => ((d.source.x + d.target.x)/2 - 5)
+        )
+        .attr("y", d => ((d.source.y + d.target.y)/2 - 5)
+        );
     }
     
     function dragstarted(event, d) {
