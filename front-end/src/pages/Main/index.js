@@ -2,18 +2,19 @@ import React, {useEffect, useState, useCallback} from 'react';
 
 import Graph from '../../components/Graph'
 import api from '../../services/api';
+import { ImSpinner4 } from 'react-icons/im';
 
-import {DivGraphs} from './styles';
+import { DivGraphs } from './styles';
 
 export default function Main() {
   
-  const [loading, setLoading] = useState(true);
+  const [loadingGraph, setLoadingGraph] = useState(true);
   const [nodes, setNodes] = useState();
 
   const loadNodes = useCallback(async () => {
     const response = await api.get('pets');
     setNodes(response.data);
-    setLoading(false)
+    setLoadingGraph(false)
   }, [nodes])
   
   useEffect(() => {
@@ -21,9 +22,9 @@ export default function Main() {
   }, [])
 
   return (
-    <DivGraphs>
-      {!loading ? <h1>Grafos</h1> : <h1>Carregando...</h1>}
-      {!loading ? <Graph data={nodes}/> : <></>}
+    <DivGraphs loadingGraph={loadingGraph}>
+      {!loadingGraph ? <h1>Grafos</h1> : <ImSpinner4 size={100}/>}
+      {!loadingGraph ? <Graph data={nodes}/> : <></>}
     </DivGraphs>
   );
 }

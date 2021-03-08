@@ -1,12 +1,29 @@
 import styled, { keyframes, css } from 'styled-components';
 
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+
+  }  to {
+    transform: rotate(360deg);
+  }
+`;
+
 export const DivGraphs = styled.div`
+  ${props =>
+    props.loadingGraph &&
+    css`
+      > svg {
+        animation: ${rotate} 1.5s linear infinite;
+        margin: auto;
+      }
+      height: 90%;
+  `}
+
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-
-  margin-top: 20px;
 
   h1{
     margin-bottom:20px;
