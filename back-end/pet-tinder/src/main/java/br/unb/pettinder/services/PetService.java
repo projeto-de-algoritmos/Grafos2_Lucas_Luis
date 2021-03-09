@@ -1,12 +1,15 @@
 package br.unb.pettinder.services;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import br.unb.pettinder.entities.Pet;
+import br.unb.pettinder.graph.DijkstraGraph;
 import br.unb.pettinder.graph.Graph;
 import br.unb.pettinder.repositories.PetRepository;
 
@@ -42,9 +45,9 @@ public class PetService {
     }
 
     public Pet create(Pet pet) {
-        if(pet.getId() !=null){
+        if (pet.getId() != null) {
             Optional<Pet> opt = this.repository.findById(pet.getId());
-            if(opt.isPresent()){
+            if (opt.isPresent()) {
                 pet = this.repository.save(pet);
                 return pet;
             }
@@ -52,5 +55,32 @@ public class PetService {
         pet.setId(null);
         pet = this.repository.save(pet);
         return pet;
+    }
+
+    public List<Pet> useDijkstra(Integer from, Integer to) {
+        
+        List<Pet> pets = this.repository.findAll();
+        DijkstraGraph<Pet> dijkstraGraph = this.mountDijkstraGraph(pets);
+        pets = dijkstraGraph.getPathToList(pets.get(from - 1), pets.get(to - 1));
+        Collections.reverse(pets);
+        return pets;
+
+    }
+
+    public Boolean isConnected() {
+        List<Pet> pets = this.repository.findAll();
+        DijkstraGraph<Pet> dijkstraGraph = this.mountDijkstraGraph(pets);
+        return dijkstraGraph.isConnected();
+    }
+
+    private DijkstraGraph<Pet> mountDijkstraGraph(List<Pet> pets) {
+
+        DijkstraGraph<Pet> dijkstraGraph = new DijkstraGraph<>();
+
+        pets.stream().forEach(p -> {
+            dijkstraGraph.add(p, pets.get(p.getParentId().intValue() - 1), p.getParentWeight());
+        });
+
+        return dijkstraGraph;
     }
 }

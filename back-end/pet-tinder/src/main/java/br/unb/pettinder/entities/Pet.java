@@ -96,9 +96,9 @@ public class Pet  implements Comparable<Pet>{
 
     @Override
     public String toString() {
-        return "Pet [age=" + age + ", gender=" + gender + ", id=" + id + ", imageName=" + imageName + ", name=" + name
-                + ", parentId=" + parentId + ", parentWeight=" + parentWeight + ", race=" + race + "]";
+        return "Pet [id=" + id + ", name=" + name + "]";
     }
+    
     
     
 }
