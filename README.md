@@ -28,7 +28,9 @@ Na sequência será aberta uma página em http://localhost:3000
 ### Screenshots
 
 
-![](../img/api-1.png "backend api -1")
-![](../img/api-2.png "backend api -2")
-![](../img/api-3.png "backend api -3")
+![](https://github.com/projeto-de-algoritmos/Grafos2_Lucas_Luis/blob/main/img/api1.png "backend api -1")
+
+![](https://github.com/projeto-de-algoritmos/Grafos2_Lucas_Luis/blob/main/img/api2.png "backend api -2")
+
+![](https://github.com/projeto-de-algoritmos/Grafos2_Lucas_Luis/blob/main/img/api3.png "backend api -3")
 
