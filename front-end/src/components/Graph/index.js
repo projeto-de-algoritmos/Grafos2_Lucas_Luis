@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import * as d3 from 'd3';
 
-let width = window.innerWidth/1.1;
-let height = window.innerHeight/1.2;
+import { GraphDiv } from './styles';
+
+let width = window.innerWidth/1.4;
+let height = window.innerHeight/1.1;
 
 export default function Graph({ data }) {
   const [nodes, setNodes] = useState(data);
@@ -143,5 +145,5 @@ export default function Graph({ data }) {
     
   }, [])
 
-  return  <div id="my_dataviz"></div>
+  return  <GraphDiv id="my_dataviz"></GraphDiv>
 }

@@ -18,25 +18,27 @@ export const DivGraphs = styled.div`
         margin: auto;
       }
       height: 90%;
+      width: 90%;
   `}
-
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
 
   h1{
     margin-bottom:20px;
   }
 
-  div{
+  > div{
     display: flex;
     flex-direction: column;
 
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;    
     border: solid 3px black;
     border-radius: 5px;
+
+    margin-right:10px;
   }
   
   .links line {
@@ -49,4 +51,28 @@ export const DivGraphs = styled.div`
     stroke-width: 2px;
   }
   
+`;
+
+export const SelectContainer = styled.div`
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-bottom: 450px;
+  width: 26%;
+  /* margin-top:53px; */
+  
+  >div {
+    margin-left: 4px;
+  }
+  border: solid 3px black;
+    border-radius: 5px;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+
+  margin-top: 25px;
 `;
