@@ -14,7 +14,7 @@ export default function Graph({ data }) {
     let links = [];
     
     nodes.map((value, index) => {
-      links.push({ source: value.parentId, target: value.id })
+      links.push({ source: value.parentId, target: value.id, weight: value.paretWeight })
     });
 
     const svg =  d3.select("#my_dataviz")

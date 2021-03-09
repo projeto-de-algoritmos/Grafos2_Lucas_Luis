@@ -61,11 +61,7 @@ export const SelectContainer = styled.div`
 
   padding-bottom: 450px;
   width: 26%;
-  /* margin-top:53px; */
   
-  >div {
-    margin-left: 4px;
-  }
   border: solid 3px black;
     border-radius: 5px;
 `;
@@ -75,4 +71,12 @@ export const Container = styled.div`
   justify-content: center;
 
   margin-top: 25px;
+`;
+
+
+export const Container2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: c */
+  /* width: 26%; */
 `;

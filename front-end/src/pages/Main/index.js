@@ -5,7 +5,7 @@ import api from '../../services/api';
 import { ImSpinner4 } from 'react-icons/im';
 import Selector from '../../components/Selector';
 
-import { Container, DivGraphs, SelectContainer } from './styles';
+import { Container, DivGraphs, SelectContainer, Container2 } from './styles';
 
 export default function Main() {
   
@@ -27,13 +27,31 @@ export default function Main() {
   
   const loadNodes = useCallback(async () => {
     const response = await api.get('pets');
+    
     setNodes(response.data);
-    setLoadingGraph(false)
+    
+    getNames(response.data);
+    
+    setLoadingGraph(false);
   }, [nodes])
   
+  const getNames = useCallback((nodes) => { 
+    let names = [];
+    
+    nodes.map((value, index) => {
+      names.push(value.name)
+    });
+
+    setNames(names);
+  }, [])
+
+  const submit = useCallback(async () => {
+    await api.get(`/dijkstra/16/2`);
+  }, [])
+
   useEffect(() => {
     loadNodes()
-  }, [])
+  }, [loadingGraph])
 
   return (
     <Container>
@@ -43,16 +61,25 @@ export default function Main() {
       </DivGraphs>
 
        <SelectContainer>
-        <Selector
-          onChange={handdleStartingPoint}
-          options={['Pankeca', 'Torresmo', 'Laika', 'Boo']}
-        />
+        
+         <div>
+           ponto de partida
+          <Selector
+            onChange={handdleStartingPoint}
+            options={names}
+          />
+        </div>
 
+      <div>
+        ponta de chegada
         <Selector
           onChange={handdleArrivalPoint}
-          options={['Pankeca', 'Torresmo', 'Laika', 'Boo']}
+          options={names}
         />
-
+      </div>
+      
+      {/* <div><button>fasdfasd</button></div> */}
+      <button onClick={submit}>PLAY</button>
       </SelectContainer> 
     </Container>
   );
